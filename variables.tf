@@ -25,20 +25,20 @@ variable "prefix" {
 
 variable "sku_name" {
   description = "(Required) The Name of the SKU to use for this Application Gateway. Possible values are Standard_Small, Standard_Medium, Standard_Large, Standard_v2, WAF_Medium, WAF_Large, and WAF_v2"
-  type = string
-  default = "Standard_v2"
+  type        = string
+  default     = "Standard_v2"
 }
 
 variable "sku_tier" {
   description = "(Required) The Tier of the SKU to use for this Application Gateway. Possible values are Standard, Standard_v2, WAF and WAF_v2."
-  type = string
-  default = "Standard_v2"
+  type        = string
+  default     = "Standard_v2"
 }
 
 variable "sku_capacity" {
   description = "(Required) The Capacity of the SKU to use for this Application Gateway. When using a V1 SKU this value must be between 1 and 32, and 1 to 125 for a V2 SKU."
-  type = number
-  default = 1
+  type        = number
+  default     = 1
 }
 
 variable "vnet_subnet_id" {

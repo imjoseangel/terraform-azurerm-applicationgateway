@@ -14,9 +14,9 @@ This Terraform module deploys an Application Gateway on Azure
 ```terraform
 resource "azurerm_subnet" "appgwsubnet" {
   name                 = "subnet-agic"
-  resource_group_name  = "we-voydev-rsg-network-voyager-integrationzone"
+  resource_group_name  = "rsg-network"
   virtual_network_name = data.azurerm_virtual_network.aksvnet.name
-  address_prefixes     = ["10.230.2.0/24"]
+  address_prefixes     = ["10.10.1.0/24"]
 }
 
 module "appgateway" {

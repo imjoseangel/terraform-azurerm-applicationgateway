@@ -40,4 +40,4 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -var=name=appgw var=vnet_subnet_id=${{ secrets.AZURE_APPGW }}
+      run: terraform plan -var=name=appgw -var=vnet_subnet_id=${{ secrets.AZURE_APPGW }}

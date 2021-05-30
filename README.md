@@ -1,6 +1,6 @@
 # terraform-azurerm-applicationgateway
 
-## Deploys an Azure Application Gateway
+## Deploys a Azure Application Gateway
 
 This Terraform module deploys an Application Gateway on Azure
 

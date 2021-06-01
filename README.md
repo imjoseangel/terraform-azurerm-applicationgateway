@@ -1,5 +1,7 @@
 # terraform-azurerm-applicationgateway
 
+[![Terraform](https://github.com/visma-raet/terraform-azurerm-applicationgateway/actions/workflows/terraform.yml/badge.svg)](https://github.com/visma-raet/terraform-azurerm-applicationgateway/actions/workflows/terraform.yml)
+
 ## Deploys a Azure Application Gateway
 
 This Terraform module deploys an Application Gateway on Azure

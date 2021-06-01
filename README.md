@@ -49,7 +49,7 @@ resource "azurerm_role_assignment" "app_gw" {
   principal_id         = data.azurerm_user_assigned_identity.appgw.principal_id
 }
 
-resource "azurerm_role_assignment" "resource_group" {
+resource "azurerm_role_assignment" "appgw_resource_group" {
   scope                = module.appgateway.resource_group_id
   role_definition_name = "Reader"
   principal_id         = data.azurerm_user_assigned_identity.appgw.principal_id

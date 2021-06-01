@@ -46,8 +46,8 @@ resource "azurerm_application_gateway" "main" {
   resource_group_name = local.resource_group_name
 
   sku {
-    name     = var.sku_name
-    tier     = var.sku_tier
+    name     = var.sku
+    tier     = var.sku
     capacity = var.sku_capacity
   }
 
@@ -95,7 +95,7 @@ resource "azurerm_application_gateway" "main" {
 
   dynamic "waf_configuration" {
     #ts:skip=accurics.azure.NS.147 Enabling dynamically
-    for_each = (var.waf_enabled == true && contains(["WAF", "WAF_v2"], var.sku_tier)) ? [true] : []
+    for_each = (var.waf_enabled == true && contains(["WAF", "WAF_v2"], var.sku)) ? [true] : []
     content {
       enabled          = var.waf_enabled
       firewall_mode    = var.waf_firewall_mode

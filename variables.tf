@@ -23,16 +23,15 @@ variable "prefix" {
   default     = "default"
 }
 
-variable "sku_name" {
-  description = "(Required) The Name of the SKU to use for this Application Gateway. Possible values are Standard_Small, Standard_Medium, Standard_Large, Standard_v2, WAF_Medium, WAF_Large, and WAF_v2"
+variable "sku" {
+  description = "(Required) The Name of the SKU to use for this Application Gateway. Possible values are Standard_v2, and WAF_v2"
   type        = string
   default     = "Standard_v2"
-}
 
-variable "sku_tier" {
-  description = "(Required) The Tier of the SKU to use for this Application Gateway. Possible values are Standard, Standard_v2, WAF and WAF_v2."
-  type        = string
-  default     = "Standard_v2"
+  validation {
+    condition     = can(regex("Standard_v2|WAF_v2", var.sku))
+    error_message = "ERROR: Invalid SKU Tier must be of either Standard_v2 or WAF_v2."
+  }
 }
 
 variable "sku_capacity" {

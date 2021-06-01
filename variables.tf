@@ -46,6 +46,17 @@ variable "vnet_subnet_id" {
   type        = string
 }
 
+variable "waf_enabled" {
+  description = "Is the Web Application Firewall be enabled?"
+  default     = false
+}
+
+variable "waf_firewall_mode" {
+  description = "(Required) The Web Application Firewall Mode. Possible values are Detection and Prevention."
+  type        = string
+  default     = "Detection"
+}
+
 variable "tags" {
   description = "Tags to apply to all resources created."
   type        = map(string)

@@ -22,7 +22,7 @@ resource "azurerm_subnet" "appgwsubnet" {
 }
 
 module "appgateway" {
-  source                = "https://github.com/visma-raet/terraform-azurerm-applicationgateway.git"
+  source                = "github.com/visma-raet/terraform-azurerm-applicationgateway"
   name                  = var.appgw_name
   resource_group_name   = var.appgw_rsg
   location              = var.location

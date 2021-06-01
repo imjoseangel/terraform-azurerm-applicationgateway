@@ -14,6 +14,22 @@ This Terraform module deploys an Application Gateway on Azure
 ## Usage in Terraform 0.15
 
 ```terraform
+data "azurerm_resource_group" "appgwvnetrsg" {
+  name = "vnetrsg-aks"
+}
+
+data "azurerm_virtual_network" "appgwvnet" {
+  name                = "vnet-aks"
+  resource_group_name = data.azurerm_resource_group.aksvnetrsg.name
+}
+
+resource "azurerm_subnet" "appgwsubnet" {
+  name                 = "subnet-agic"
+  resource_group_name  = data.azurerm_resource_group.aksvnetrsg.name
+  virtual_network_name = data.azurerm_virtual_network.aksvnet.name
+  address_prefixes     = ["10.100.1.0/24"]
+}
+
 resource "azurerm_subnet" "appgwsubnet" {
   name                 = "subnet-agic"
   resource_group_name  = "rsg-network"
@@ -61,9 +77,8 @@ data "azurerm_resources" "routetables" {
 }
 
 resource "azurerm_subnet_route_table_association" "appgwroute" {
-  count          = length(data.azurerm_resources.routetables.resources)
   subnet_id      = azurerm_subnet.appgwsubnet.id
-  route_table_id = data.azurerm_resources.routetables.resources[count.index].id
+  route_table_id = data.azurerm_resources.routetables.resources[0].id
   depends_on = [
     data.azurerm_resources.routetables
   ]

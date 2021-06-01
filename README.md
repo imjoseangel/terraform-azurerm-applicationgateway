@@ -10,6 +10,7 @@ This Terraform module deploys an Application Gateway on Azure
 
 * Default SKU Tier is set to Standard_V2
 * Default SKU Capacity is set to 1
+* Only Standard_V2 and WAF_V2 SKU are available
 
 ## Usage in Terraform 0.15
 
@@ -84,6 +85,28 @@ resource "azurerm_subnet_route_table_association" "appgwroute" {
   ]
 }
 
+```
+
+The **Application Gateway** can be connected to Kubernetes (AKS) enabling the `create_ingress` and `gateway_id` options:
+
+```terraform
+module "aks" {
+  source                = "github.com/visma-raet/terraform-azurerm-kubernetes"
+...
+  create_ingress        = true
+  gateway_id            = module.appgateway.id
+}
+```
+
+WAF can be enabled adding `sku` and `waf_enabled` fields. In order to enable WAF, `sku` needs to be set to `WAF_2` and `waf_enabled` to `true`. If one of them does not fit the requirements, WAF will remain disabled by default.
+
+```terraform
+module "appgateway" {
+  source                = "github.com/visma-raet/terraform-azurerm-applicationgateway"
+...
+  sku                   = "WAF_v2"
+  waf_enabled           = true
+}
 ```
 
 ## Authors

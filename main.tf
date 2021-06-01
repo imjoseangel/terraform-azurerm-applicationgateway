@@ -95,7 +95,7 @@ resource "azurerm_application_gateway" "main" {
 
   dynamic "waf_configuration" {
     #ts:skip=accurics.azure.NS.147 Enabling dynamically
-    for_each = (var.waf_enabled == true && contains(["WAF", "WAF_v2"], var.sku_tier) && contains(["WAF_Medium", "WAF_Large", "WAF_v2"], var.sku_name)) ? [true] : []
+    for_each = (var.waf_enabled == true && contains(["WAF", "WAF_v2"], var.sku_tier)) ? [true] : []
     content {
       enabled          = var.waf_enabled
       firewall_mode    = var.waf_firewall_mode

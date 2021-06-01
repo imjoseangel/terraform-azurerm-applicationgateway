@@ -93,11 +93,15 @@ resource "azurerm_application_gateway" "main" {
     backend_http_settings_name = "defaulthttpsetting"
   }
 
-  waf_configuration {
-    enabled          = var.waf_enabled
-    firewall_mode    = var.waf_firewall_mode
-    rule_set_type    = "OWASP"
-    rule_set_version = "3.1"
+  dynamic "waf_configuration" {
+    #ts:skip=accurics.azure.NS.147 Enabling dynamically
+    for_each = (var.waf_enabled == true && contains(["WAF", "WAF_v2"], var.sku_tier)) ? [true] : []
+    content {
+      enabled          = var.waf_enabled
+      firewall_mode    = var.waf_firewall_mode
+      rule_set_type    = "OWASP"
+      rule_set_version = "3.1"
+    }
   }
 
   lifecycle {

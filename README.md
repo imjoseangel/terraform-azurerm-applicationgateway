@@ -12,7 +12,7 @@ This Terraform module deploys an Application Gateway on Azure
 * Default SKU Capacity is set to 1
 * Only Standard_V2 and WAF_V2 SKU are available
 
-## Usage in Terraform 0.15
+## Usage in Terraform 1.0
 
 ```terraform
 data "azurerm_resource_group" "appgwvnetrsg" {

@@ -1,6 +1,6 @@
 # terraform-azurerm-applicationgateway
 
-[![Terraform](https://github.com/visma-raet/terraform-azurerm-applicationgateway/actions/workflows/terraform.yml/badge.svg)](https://github.com/visma-raet/terraform-azurerm-applicationgateway/actions/workflows/terraform.yml)
+[![Terraform](https://github.com/imjoseangel/terraform-azurerm-applicationgateway/actions/workflows/terraform.yml/badge.svg)](https://github.com/imjoseangel/terraform-azurerm-applicationgateway/actions/workflows/terraform.yml)
 
 ## Deploys a Azure Application Gateway
 
@@ -39,7 +39,7 @@ resource "azurerm_subnet" "appgwsubnet" {
 }
 
 module "appgateway" {
-  source                = "github.com/visma-raet/terraform-azurerm-applicationgateway"
+  source                = "github.com/imjoseangel/terraform-azurerm-applicationgateway"
   name                  = var.appgw_name
   resource_group_name   = var.appgw_rsg
   location              = var.location
@@ -91,7 +91,7 @@ The **Application Gateway** can be connected to Kubernetes (AKS) enabling the `c
 
 ```terraform
 module "aks" {
-  source                = "github.com/visma-raet/terraform-azurerm-kubernetes"
+  source                = "github.com/imjoseangel/terraform-azurerm-kubernetes"
 ...
   create_ingress        = true
   gateway_id            = module.appgateway.id
@@ -102,7 +102,7 @@ WAF can be enabled adding `sku` and `waf_enabled` fields. In order to enable WAF
 
 ```terraform
 module "appgateway" {
-  source                = "github.com/visma-raet/terraform-azurerm-applicationgateway"
+  source                = "github.com/imjoseangel/terraform-azurerm-applicationgateway"
 ...
   sku                   = "WAF_v2"
   waf_enabled           = true
@@ -111,7 +111,7 @@ module "appgateway" {
 
 ## Authors
 
-Originally created by [Visma-raet](http://github.com/visma-raet)
+Originally created by [imjoseangel](http://github.com/imjoseangel)
 
 ## License
 

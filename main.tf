@@ -91,6 +91,7 @@ resource "azurerm_application_gateway" "main" {
     http_listener_name         = "httplistener"
     backend_address_pool_name  = "defaultaddresspool"
     backend_http_settings_name = "defaulthttpsetting"
+    priority                   = 10
   }
 
   dynamic "waf_configuration" {

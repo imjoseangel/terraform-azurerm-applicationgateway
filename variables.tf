@@ -1,20 +1,18 @@
 variable "name" {
   description = "Name of Application Gateway service."
+  type        = string
 }
 
 variable "create_resource_group" {
   description = "Whether to create resource group and use it for all networking resources"
   default     = true
+  type        = bool
 }
 
 variable "resource_group_name" {
   description = "A container that holds related resources for an Azure solution"
   default     = "rg-demo-westeurope-01"
-}
-
-variable "location" {
-  description = "The location/region to keep all your network resources. To get the list of all locations with table format from azure cli, run 'az account list-locations -o table'"
-  default     = "westeurope"
+  type        = string
 }
 
 variable "prefix" {
@@ -48,6 +46,7 @@ variable "vnet_subnet_id" {
 variable "waf_enabled" {
   description = "Is the Web Application Firewall be enabled?"
   default     = false
+  type        = bool
 }
 
 variable "waf_firewall_mode" {

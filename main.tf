@@ -6,8 +6,6 @@ locals {
   location            = element(coalescelist(data.azurerm_resource_group.rgrp.*.location, azurerm_resource_group.rg.*.location, [""]), 0)
 }
 
-data "azurerm_client_config" "current" {}
-
 #---------------------------------------------------------
 # Resource Group Creation or selection - Default is "false"
 #----------------------------------------------------------
@@ -20,7 +18,7 @@ resource "azurerm_resource_group" "rg" {
   #ts:skip=AC_AZURE_0389 RSG lock should be skipped for now.
   count    = var.create_resource_group ? 1 : 0
   name     = lower(var.resource_group_name)
-  location = var.location
+  location = local.location
   tags     = merge({ "ResourceName" = format("%s", var.resource_group_name) }, var.tags, )
 }
 
@@ -30,7 +28,7 @@ resource "azurerm_resource_group" "rg" {
 
 resource "azurerm_public_ip" "main" {
   name                = format("%s-%s-public", var.prefix, lower(replace(var.name, "/[[:^alnum:]]/", "")))
-  location            = var.location
+  location            = local.location
   resource_group_name = local.resource_group_name
   allocation_method   = "Static"
   sku                 = "Standard"
@@ -42,7 +40,7 @@ resource "azurerm_public_ip" "main" {
 
 resource "azurerm_application_gateway" "main" {
   name                = format("%s-%s", var.prefix, lower(replace(var.name, "/[[:^alnum:]]/", "")))
-  location            = var.location
+  location            = local.location
   resource_group_name = local.resource_group_name
 
   sku {

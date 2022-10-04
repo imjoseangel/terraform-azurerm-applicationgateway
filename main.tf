@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "rg" {
   #ts:skip=AC_AZURE_0389 RSG lock should be skipped for now.
   count    = var.create_resource_group ? 1 : 0
   name     = lower(var.resource_group_name)
-  location = local.location
+  location = var.location
   tags     = merge({ "ResourceName" = format("%s", var.resource_group_name) }, var.tags, )
 }
 

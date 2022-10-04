@@ -15,6 +15,12 @@ variable "resource_group_name" {
   type        = string
 }
 
+variable "location" {
+  description = "The location/region to keep all your resources. To get the list of all locations with table format from azure cli, run 'az account list-locations -o table'"
+  default     = "westeurope"
+  type        = string
+}
+
 variable "prefix" {
   description = "The prefix for the resources created in the specified Azure Resource Group"
   type        = string

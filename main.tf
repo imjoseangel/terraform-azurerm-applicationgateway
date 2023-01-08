@@ -93,7 +93,7 @@ resource "azurerm_application_gateway" "main" {
   }
 
   dynamic "waf_configuration" {
-    #ts:skip=accurics.azure.NS.147 Enabling dynamically
+    #ts:skip=AC_AZURE_0189 Enabling dynamically
     for_each = (var.waf_enabled && contains(["WAF", "WAF_v2"], var.sku)) ? [true] : []
     content {
       enabled          = var.waf_enabled

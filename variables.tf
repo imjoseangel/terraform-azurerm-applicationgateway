@@ -3,6 +3,11 @@ variable "name" {
   type        = string
 }
 
+variable "name" {
+  description = "Name of Public IP."
+  type        = string
+}
+
 variable "create_resource_group" {
   description = "Whether to create resource group and use it for all networking resources"
   default     = true

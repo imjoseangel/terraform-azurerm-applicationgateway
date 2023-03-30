@@ -46,7 +46,7 @@ variable "sku" {
 variable "sku_capacity" {
   description = "(Required) The Capacity of the SKU to use for this Application Gateway. When using a V1 SKU this value must be between 1 and 32, and 1 to 125 for a V2 SKU."
   type        = number
-  default     = 1
+  default     = 2
 }
 
 variable "vnet_subnet_id" {

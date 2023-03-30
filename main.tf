@@ -27,7 +27,7 @@ resource "azurerm_resource_group" "rg" {
 #---------------------------------------------------------
 
 resource "azurerm_public_ip" "main" {
-  name                = format("%s-%s-public", var.prefix, lower(replace(var.name, "/[[:^alnum:]]/", "")))
+  name                = lower(var.pip_name)
   location            = local.location
   resource_group_name = local.resource_group_name
   allocation_method   = "Static"
@@ -39,7 +39,7 @@ resource "azurerm_public_ip" "main" {
 #---------------------------------------------------------
 
 resource "azurerm_application_gateway" "main" {
-  name                = format("%s-%s", var.prefix, lower(replace(var.name, "/[[:^alnum:]]/", "")))
+  name                = lower(var.name)
   location            = local.location
   resource_group_name = local.resource_group_name
 

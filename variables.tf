@@ -3,7 +3,7 @@ variable "name" {
   type        = string
 }
 
-variable "name" {
+variable "pip_name" {
   description = "Name of Public IP."
   type        = string
 }

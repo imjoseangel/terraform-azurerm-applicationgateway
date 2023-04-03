@@ -17,7 +17,3 @@ output "public_ip_id" {
 output "public_ip_address" {
   value = azurerm_public_ip.main.ip_address
 }
-
-output "resource_group_id" {
-  value = azurerm_resource_group.rg[0].id
-}

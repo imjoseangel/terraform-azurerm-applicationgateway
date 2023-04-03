@@ -27,7 +27,7 @@ resource "azurerm_resource_group" "rg" {
 #---------------------------------------------------------
 
 resource "azurerm_public_ip" "main" {
-  name                = lower(var.pip_name)
+  name                = var.pip_name
   location            = local.location
   resource_group_name = local.resource_group_name
   allocation_method   = "Static"
@@ -39,10 +39,9 @@ resource "azurerm_public_ip" "main" {
 #---------------------------------------------------------
 
 resource "azurerm_application_gateway" "main" {
-  name                = lower(var.name)
+  name                = var.name
   location            = local.location
   resource_group_name = local.resource_group_name
-  zones               = var.zones
 
   sku {
     name     = var.sku
@@ -102,6 +101,11 @@ resource "azurerm_application_gateway" "main" {
       rule_set_type    = "OWASP"
       rule_set_version = "3.1"
     }
+  }
+
+  identity {
+    type         = var.identity_type
+    identity_ids = var.user_assigned_identity_id
   }
 
   lifecycle {

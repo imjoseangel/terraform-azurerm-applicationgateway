@@ -4,7 +4,7 @@ variable "name" {
 }
 
 variable "pip_name" {
-  description = "Name of Public IP."
+  description = "Name of Public IP for the Application Gateway service."
   type        = string
 }
 
@@ -26,6 +26,12 @@ variable "location" {
   type        = string
 }
 
+variable "prefix" {
+  description = "The prefix for the resources created in the specified Azure Resource Group"
+  type        = string
+  default     = "default"
+}
+
 variable "sku" {
   description = "(Required) The Name of the SKU to use for this Application Gateway. Possible values are Standard_v2, and WAF_v2"
   type        = string
@@ -40,7 +46,7 @@ variable "sku" {
 variable "sku_capacity" {
   description = "(Required) The Capacity of the SKU to use for this Application Gateway. When using a V1 SKU this value must be between 1 and 32, and 1 to 125 for a V2 SKU."
   type        = number
-  default     = 2
+  default     = 1
 }
 
 variable "vnet_subnet_id" {
@@ -60,14 +66,20 @@ variable "waf_firewall_mode" {
   default     = "Detection"
 }
 
+variable "identity_type" {
+  description = "Type type of identity used for the managed cluster. Possible values are 'SystemAssigned' and 'UserAssigned'. If 'UserAssigned' is set, a 'user_assigned_identity_id' must be set as well."
+  type        = string
+  default     = "SystemAssigned"
+}
+
+variable "user_assigned_identity_id" {
+  description = "(Optional) the ID of a user assigned identity"
+  type        = list(string)
+  default     = null
+}
+
 variable "tags" {
   description = "Tags to apply to all resources created."
   type        = map(string)
   default     = {}
-}
-
-variable "zones" {
-  description = "(Optional) Specifies a list of Availability Zones in which this Application Gateway should be located. Changing this forces a new Application Gateway to be created."
-  type        = list(string)
-  default     = ["1", "2"]
 }

@@ -26,12 +26,6 @@ variable "location" {
   type        = string
 }
 
-variable "prefix" {
-  description = "The prefix for the resources created in the specified Azure Resource Group"
-  type        = string
-  default     = "default"
-}
-
 variable "sku" {
   description = "(Required) The Name of the SKU to use for this Application Gateway. Possible values are Standard_v2, and WAF_v2"
   type        = string

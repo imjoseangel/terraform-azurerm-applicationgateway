@@ -189,10 +189,10 @@ resource "azurerm_application_gateway" "main" {
     }
   }
 
-  # lifecycle {
-  #   ignore_changes = [
-  #     backend_address_pool, backend_http_settings, http_listener, probe, request_routing_rule, waf_configuration, tags
-  #   ]
-  # }
+  lifecycle {
+    ignore_changes = [
+      backend_address_pool, backend_http_settings, http_listener, probe, request_routing_rule, waf_configuration, tags
+    ]
+  }
 
 }
